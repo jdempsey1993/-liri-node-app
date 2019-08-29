@@ -20,7 +20,7 @@ var request = require("request")
 
 const axios = require("axios")
 
-//NPM Moment
+/* //NPM Moment
 
 var moment = require("moment")
 
@@ -34,7 +34,7 @@ var filename = "./log.txt"
 
 //Print logging information to log.text
 log.setLevel("all")
-
+ */
 /// Spotify Api Search
 
 var spotify = new Spotify (keys.spotify)
@@ -58,15 +58,35 @@ if (process.argv[2] == "spotify-this-song"){
 //Axios request for OMDB
 
 axios.get("http://www.omdbapi.com/?t=titanic&apikey=f7e1f407")
-.then(function(reponse)){
+.then(function(reponse){
     // Log result
 
     console.log(response)
 
     //Show name of movie
-    
-    console.log(response.data.Title+"\n"+ response.data.Year+"\n"+response.data.imdbRating)
-}
 
+    console.log(response.data.Title+"\n"+ response.data.Year+"\n"+response.data.imdbRating)
+})
+    .catch(function(error){
+        // Show error
+        console.log(error)
+    })
+    .finally(function(){
+        //Executed 
+    })
+    return
+
+    
 // console.log(process.argv[2])
-// console.log(process.argv[3])
+// console.log(process.argv[3]) 
+
+
+// Bands in town
+
+bandsintown
+    .getArtistEventListen("Lana Del Rey")
+    .then(function(events){
+
+        // Return Events Array
+        console.log(repsonse.data.artistName+"\n"+response.data.dates()
+    }
