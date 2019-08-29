@@ -88,5 +88,5 @@ bandsintown
     .then(function(events){
 
         // Return Events Array
-        console.log(repsonse.data.artistName+"\n"+response.data.dates()
+        console.log(repsonse.data.artistName+"\n"+response.data.dates)
     }
