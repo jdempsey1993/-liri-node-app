@@ -55,30 +55,45 @@ if (process.argv[2] == "spotify-this-song"){
     })
 }
 
-//Axios request for OMDB
-
-axios.get("http://www.omdbapi.com/?t=titanic&apikey=f7e1f407")
-.then(function(reponse){
-    // Log result
-
-    console.log(response)
-
-    //Show name of movie
-
-    console.log(response.data.Title+"\n"+ response.data.Year+"\n"+response.data.imdbRating)
-})
-    .catch(function(error){
-        // Show error
-        console.log(error)
-    })
-    .finally(function(){
-        //Executed 
-    })
-    
-
-    
 // console.log(process.argv[2])
 // console.log(process.argv[3]) 
+
+//Axios request for OMDB
+function getMovie(searchCMD){
+    
+    var omdbURL = "http://www.ombdapi.com/?t="+searchCMD+"&y=&plot=short&apikey=f7e1f407"
+        
+    console.log(omdbURL)
+
+    //Call axios
+
+    axios.get(omdbURL).then(
+        function(omdbAxBk){
+            console.log("-----------------")
+                var movieData = omdbAxBk.data
+                /// Movie title
+                console.log("Movie title: "+movieData.Title+"\n")
+                /// Year of film
+                console.log("Year filmed: "+movieData.Year+"\n")
+                /// Rating of film from IMDB
+                console.log("IMDB film rating: "+movieData.imbdRating+"\n")
+                //Country of film
+                console.log("Country: "+movieData.Country+"\n")
+                //Film Language
+                console.log("Language: "+movieData.Language+"\n")
+                //Plot of film
+                console.log("Plot: "+movieData.Plot+"\n"
+                //Cast of film
+                console.log("Film cast: "+movieData.Actors+"\n")
+
+
+
+        }
+    )
+}
+
+    
+
 
 //Bands in town
 function getVenue(artist){
