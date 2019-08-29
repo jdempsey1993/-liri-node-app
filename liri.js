@@ -20,9 +20,9 @@ var request = require("request")
 
 const axios = require("axios")
 
-/* //NPM Moment
+ //NPM Moment
 
-var moment = require("moment")
+// var moment = require("moment")
 
 //Module to read random.text
 
@@ -34,7 +34,15 @@ var filename = "./log.txt"
 
 //Print logging information to log.text
 log.setLevel("all")
- */
+
+
+// Defining commandline arugments
+
+var liriCommand = process.argv[2]
+var searchCommand = process.argv[3]
+
+
+
 /// Spotify Api Search
 
 var spotify = new Spotify (keys.spotify)
@@ -85,9 +93,6 @@ function getMovie(searchCMD){
                 console.log("Plot: "+movieData.Plot+"\n"
                 //Cast of film
                 console.log("Film cast: "+movieData.Actors+"\n")
-
-
-
         }
     )
 }
@@ -124,4 +129,29 @@ function getVenue(artist){
         })
 
 
+}
+
+// Function to log text
+
+function logging (){
+    fs.readFile("random.txt",utf8,function(error,data){
+        if (error) {
+            console.log(error)
+        } else { 
+            var dataArr = data.split(",")
+            if (dataArr[0] === "spotify"){
+                spotify(dataArr[1])
+            }
+            if (dataArr[0] === "omdb"){
+                getMovie(dataArr[1])
+            }
+            if (dataArr[0] === "bandsintown"){
+                getVenue(dataArr[1])
+            }
+                
+            
+
+        }
+        }
+    }
 }
