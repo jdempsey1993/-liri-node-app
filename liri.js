@@ -6,7 +6,7 @@ require("dotenv").config();
 
 /// Bands in Town
 
-var bandsintown = require("bandsintown")
+// var bandsintown = require("bandsintown")
 
 /// Module to access spotify
 
@@ -74,19 +74,39 @@ axios.get("http://www.omdbapi.com/?t=titanic&apikey=f7e1f407")
     .finally(function(){
         //Executed 
     })
-    return
+    
 
     
 // console.log(process.argv[2])
 // console.log(process.argv[3]) 
 
+//Bands in town
+function getVenue(artist){
+    var artist = searchCMD
+    var queryURL = "https://rest.bandsintown.com/artists/"+artist+"/events?app_id=codingbootcamp"
 
-// Bands in town
+        //Axios call
+        axios.get(queryURL)
+        .then(function(responseBOTR){
 
-bandsintown
-    .getArtistEventListen("Lana Del Rey")
-    .then(function(events){
+            console.log("------------")
 
-        // Return Events Array
-        console.log(repsonse.data.artistName+"\n"+response.data.dates)
-    }
+            var axBack = responseBOTR.data[0]
+
+            var vName = axBack.venue.name
+
+            var vLoc = axBack.venue.city
+
+            var eventDate = time(axBack.datetime).format("MM-DD-YYYY")
+
+           // Console log  response
+
+           console.log("Venue:"+vName+"\r\n")
+
+           console.log("Location:"+vLoc+"\r\n")
+
+           console.log("Event Date:"+eventDate+"\r\n")
+        })
+
+
+}
