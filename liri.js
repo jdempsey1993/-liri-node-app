@@ -11,6 +11,7 @@ require("dotenv").config();
 /// Module to access spotify
 
 var Spotify = require("node-spotify-api")
+var spotify = new Spotify(keys.spotify)
 
 /// NPM Module for OMDB access 
 
@@ -18,11 +19,11 @@ var request = require("request")
 
 // NPM to request Axios
 
-const axios = require("axios")
+var axios = require("axios")
 
  //NPM Moment
 
-// var moment = require("moment")
+var moment = require("moment")
 
 //Module to read random.text
 
@@ -45,23 +46,19 @@ var searchCommand = process.argv[3]
 
 /// Spotify Api Search
 
-var spotify = new Spotify (keys.spotify)
-
-if (process.argv[2] == "spotify-this-song"){
-    
-    spotify.search({type: 'track',query:process.argv[3]},function(err,data){
-        if (err){
-            return console.log("Error occured:" + err)
-        }
-        console.log(data.tracks.items[0].artists[0].name)
-
-        console.log(process.arg[3])
-
-        console.log(data.tracks.items[0].external_urls.spotify)
-
-        console.log(data.tracks.items[0].album.name)
+function spotifyThisSong(arg) {
+    spotify.search({type: 'track', query: arg2}).then(function(response){
+        var dataOne = response.tracks.items[0]
+        console.log(
+            "Artist: " + dataOne.artists[0].name,
+            "\nSong: " + dataOne.name,
+            "\nLink to Song: " + dataOne.preview_url,
+            "\nAlbum: " + dataOne.album.name
+        
+        )
     })
 }
+
 
 // console.log(process.argv[2])
 // console.log(process.argv[3]) 
@@ -90,7 +87,7 @@ function getMovie(searchCMD){
                 //Film Language
                 console.log("Language: "+movieData.Language+"\n")
                 //Plot of film
-                console.log("Plot: "+movieData.Plot+"\n"
+                console.log("Plot: "+movieData.Plot+"\n")
                 //Cast of film
                 console.log("Film cast: "+movieData.Actors+"\n")
         }
@@ -148,10 +145,6 @@ function logging (){
             if (dataArr[0] === "bandsintown"){
                 getVenue(dataArr[1])
             }
-                
-            
-
         }
-        }
-    }
+    })
 }
