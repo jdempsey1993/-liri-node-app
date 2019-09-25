@@ -1,48 +1,13 @@
-// For acess to api keys
-
-var keys = require ("./keys.js")
-
+  
 require("dotenv").config();
 
-/// Bands in Town
-
-// var bandsintown = require("bandsintown")
-
-/// Module to access spotify
-
-var Spotify = require("node-spotify-api")
-var spotify = new Spotify(keys.spotify)
-
-/// NPM Module for OMDB access 
-
-var request = require("request")
-
-// NPM to request Axios
-
-var axios = require("axios")
-
- //NPM Moment
-
-var moment = require("moment")
-
-//Module to read random.text
-
-var fs = require("fs")
-
-//Output log files 
-
-var filename = "./log.txt"
-
-//Print logging information to log.text
-log.setLevel("all")
-
-
-// Defining commandline arugments
-
-var liriCommand = process.argv[2]
-var searchCommand = process.argv[3]
-
-
+var axios = require("axios");
+var keys = require("./keys.js");
+var moment = require("moment");
+var Spotify = require("node-spotify-api");
+var spotify = new Spotify(keys.spotify);
+var arg1 = process.argv[2];
+var arg2 = process.argv[3];
 
 /// Spotify Api Search
 
