@@ -30,7 +30,7 @@ function movieThis(arg2){
         arg2 = "Mr.Nobody"
     }
     
-    axios.get("http://www.ombdapi.com/?t=" + arg2 +"&plot=short&apikey=f7e1f407".then(function(response){
+    axios.get("http://www.ombdapi.com/?t=" + arg2 +"&plot=short&apikey=f7e1f407").then(function(response){
 
         console.log(
             "Movie Title: " + response.data.Title,
@@ -41,41 +41,19 @@ function movieThis(arg2){
             "\nLanguage: " + response.data.Language,
             "\nMovie Plot: " + response.data.Plot,
             "\nActors: " + response.data.Actors)
-    })
+        })
 }
     
 
 
 //Bands in town
-function getVenue(artist){
-    var artist = searchCMD
-    var queryURL = "https://rest.bandsintown.com/artists/"+artist+"/events?app_id=codingbootcamp"
-
-        //Axios call
-        axios.get(queryURL)
-        .then(function(responseBOTR){
-
-            console.log("------------")
-
-            var axBack = responseBOTR.data[0]
-
-            var vName = axBack.venue.name
-
-            var vLoc = axBack.venue.city
-
-            var eventDate = time(axBack.datetime).format("MM-DD-YYYY")
-
-           // Console log  response
-
-           console.log("Venue:"+vName+"\r\n")
-
-           console.log("Location:"+vLoc+"\r\n")
-
-           console.log("Event Date:"+eventDate+"\r\n")
-        })
-
-
-}
+function concertThis(arg2) {
+    axios.get("https://rest.bandsintown.com/artists/" + arg2 + "/events?app_id=codingbootcamp").then(function (response) {
+        console.log(response.data[0].venue.name)
+        console.log(response.data[0].venue.city + ", " + response.data[0].venue.country)
+        console.log(moment(response.data[0].datetime).format("MM-DD-YYYY"))
+    }
+    )
 
 // Function to log text
 
@@ -83,7 +61,7 @@ function logging (){
 
     var fs= require("fs")
 
-    fs.readFile("random.txt",utf8,function(error,data){
+    fs.readFile("random.txt","utf8",function(error,data){
         if (error) {
             return console.log(error)
         }
@@ -93,3 +71,21 @@ function logging (){
         arg2 = dataArray[1]
         console.log(spotifyThisSong(arg2))
     })
+
+ } switch (arg1) {
+     case "movie-this":
+         movieThis(arg2)
+         break
+
+     case "concert-this":
+        concertThis(arg2)
+        break
+
+    case "spotify-this-song":
+        spotifyThisSong(arg2)
+
+    case "logging":
+        logging()
+        break
+ }
+}
