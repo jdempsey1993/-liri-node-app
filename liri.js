@@ -80,20 +80,16 @@ function getVenue(artist){
 // Function to log text
 
 function logging (){
+
+    var fs= require("fs")
+
     fs.readFile("random.txt",utf8,function(error,data){
         if (error) {
-            console.log(error)
-        } else { 
-            var dataArr = data.split(",")
-            if (dataArr[0] === "spotify"){
-                spotify(dataArr[1])
-            }
-            if (dataArr[0] === "omdb"){
-                getMovie(dataArr[1])
-            }
-            if (dataArr[0] === "bandsintown"){
-                getVenue(dataArr[1])
-            }
+            return console.log(error)
         }
+
+        var dataArray = data.split(",")
+        arg1 = dataArray[0]
+        arg2 = dataArray[1]
+        console.log(spotifyThisSong(arg2))
     })
-}
