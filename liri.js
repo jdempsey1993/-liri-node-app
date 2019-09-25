@@ -24,41 +24,25 @@ function spotifyThisSong(arg) {
     })
 }
 
-
-// console.log(process.argv[2])
-// console.log(process.argv[3]) 
-
 //Axios request for OMDB
-function getMovie(searchCMD){
+function movieThis(arg2){
+    if (!arg2){
+        arg2 = "Mr.Nobody"
+    }
     
-    var omdbURL = "http://www.ombdapi.com/?t="+searchCMD+"&y=&plot=short&apikey=f7e1f407"
-        
-    console.log(omdbURL)
+    axios.get("http://www.ombdapi.com/?t=" + arg2 +"&plot=short&apikey=f7e1f407".then(function(response){
 
-    //Call axios
-
-    axios.get(omdbURL).then(
-        function(omdbAxBk){
-            console.log("-----------------")
-                var movieData = omdbAxBk.data
-                /// Movie title
-                console.log("Movie title: "+movieData.Title+"\n")
-                /// Year of film
-                console.log("Year filmed: "+movieData.Year+"\n")
-                /// Rating of film from IMDB
-                console.log("IMDB film rating: "+movieData.imbdRating+"\n")
-                //Country of film
-                console.log("Country: "+movieData.Country+"\n")
-                //Film Language
-                console.log("Language: "+movieData.Language+"\n")
-                //Plot of film
-                console.log("Plot: "+movieData.Plot+"\n")
-                //Cast of film
-                console.log("Film cast: "+movieData.Actors+"\n")
-        }
-    )
+        console.log(
+            "Movie Title: " + response.data.Title,
+            "\nYear: " + response.data.Year,
+            "\nIMDB Rating: " + response.data.imdbRating,
+            "\nRotten Tomatoes Rating: " + response.data.Ratings[1],
+            "\nCountry: " + response.data.Country,
+            "\nLanguage: " + response.data.Language,
+            "\nMovie Plot: " + response.data.Plot,
+            "\nActors: " + response.data.Actors)
+    })
 }
-
     
 
 
