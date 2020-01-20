@@ -2,6 +2,9 @@
 Liri is a command line, text based version of the Siri search application from iOS. It allows for easy access to information from movie info to upcoming concerts.
 
 [View a video of the code here.](https://youtu.be/nPjPCOXluS0)
+---
+
+![Image of project]()
 
 Installation
 ---
@@ -18,9 +21,9 @@ $ git clone git@github.com:jdempsey1993/liri-node-app.git
 ```
 Created with:
 ---
-* 
-* 
-* 
+* Node
+* Javascript
+* Axios
 
 Contributors:
 ---
