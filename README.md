@@ -4,7 +4,7 @@ Liri is a command line, text based version of the Siri search application from i
 [View a video of the code here.](https://youtu.be/nPjPCOXluS0)
 ---
 
-![Image of project]()
+![Image of project](https://github.com/jdempsey1993/liri-node-app/blob/master/Liri%20App.png)
 
 Installation
 ---
